@@ -13,6 +13,8 @@
 # https://aria2.github.io/manual/en/html/aria2c.html#cmdoption-all-proxy
 # https://aria2.github.io/manual/en/html/aria2c.html#environment
 
+sudo apt-get install -y aria2 cabextract wimtools chntpw genisoimage
+
 export all_proxy=""
 
 # End of proxy configuration
@@ -33,17 +35,17 @@ if ! which aria2c >/dev/null \
   echo ""
   if [ `uname` == "Linux" ]; then
     # Linux
-    echo "If you use Debian or Ubuntu you can install these using:"
-    echo "sudo apt-get install aria2 cabextract wimtools chntpw genisoimage"
-  elif [ `uname` == "Darwin" ]; then
+   # echo "If you use Debian or Ubuntu you can install these using:"
+   # echo "sudo apt-get install aria2 cabextract wimtools chntpw genisoimage"
+ # elif [ `uname` == "Darwin" ]; then
     # macOS
-    echo "macOS requires Homebrew (https://brew.sh) to install the prerequisite software."
-    echo "If you use Homebrew, you can install these using:"
-    echo "brew tap sidneys/homebrew"
-    echo "brew install aria2 cabextract wimlib cdrtools sidneys/homebrew/chntpw"
-  fi
-  exit 1
-fi
+   # echo "macOS requires Homebrew (https://brew.sh) to install the prerequisite software."
+   # echo "If you use Homebrew, you can install these using:"
+   # echo "brew tap sidneys/homebrew"
+   # echo "brew install aria2 cabextract wimlib cdrtools sidneys/homebrew/chntpw"
+ # fi
+ # exit 1
+#fi
 
 destDir="UUPs"
 tempScript="aria2_script.$RANDOM.txt"
