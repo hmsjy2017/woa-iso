@@ -31,6 +31,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./files
-          asset_name: woa-iso.zip
-          asset_content_type: application/zip
+          asset_path: 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
+          asset_name: 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
+         # asset_content_type: application/zip
