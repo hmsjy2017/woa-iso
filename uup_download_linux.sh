@@ -44,8 +44,8 @@ if ! which aria2c >/dev/null \
    # echo "brew tap sidneys/homebrew"
    # echo "brew install aria2 cabextract wimlib cdrtools sidneys/homebrew/chntpw"
  # fi
- # exit 1
-# fi
+  exit 1
+ fi
 
 destDir="UUPs"
 tempScript="aria2_script.$RANDOM.txt"
