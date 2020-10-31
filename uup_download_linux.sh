@@ -33,7 +33,7 @@ if ! which aria2c >/dev/null \
   echo " - chntpw"
   echo " - genisoimage or mkisofs"
   echo ""
-  if [ `uname` == "Linux" ]; then
+ # if [ `uname` == "Linux" ]; then
     # Linux
    # echo "If you use Debian or Ubuntu you can install these using:"
    # echo "sudo apt-get install aria2 cabextract wimtools chntpw genisoimage"
