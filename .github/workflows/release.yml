@@ -24,13 +24,23 @@ jobs:
           release_name: ${{ github.ref }}
           draft: true
 
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
-          asset_name: 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
+     # - name: Upload Release Asset
+       # id: upload-release-asset
+       # uses: actions/upload-release-asset@v1
+       # env:
+         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       # with:
+         # upload_url: ${{ steps.create_release.outputs.upload_url }}
+         # asset_path: 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
+         # asset_name: 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
          # asset_content_type: application/zip
+      - name: Upload firmware for release
+        uses: softprops/action-gh-release@v1
+        continue-on-error: true
+        if: env.REPO_TOKEN && env.UPLOAD_FIRMWARE_FOR_RELEASE == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+        with:
+          files: 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
+         # name: ${{ env.date2 }} ${{matrix.target}} ${{ env.EMOJI }}
+         # tag_name: ${{ env.date }}_${{matrix.target}}
