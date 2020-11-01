@@ -25,16 +25,24 @@ jobs:
           release_name: ${{ github.ref }}
           draft: true
 
-      - name: Upload Release Asset
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
-          asset_name: 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
-          asset_content_type: ISO File
+       - name: Upload to Wenshushu
+         continue-on-error: true
+         run: |
+           curl -fsSL git.io/file-transfer | sh
+           wetrans=$(./transfer wss 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
+           wetrans=$(echo $wetrans | grep -o -E "https[^ ]*")
+           echo "Download Link: $wetrans
+
+     # - name: Upload Release Asset
+       # id: upload-release-asset
+       # uses: actions/upload-release-asset@v1
+       # env:
+         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       # with:
+         # upload_url: ${{ steps.create_release.outputs.upload_url }}
+         # asset_path: ./19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
+         # asset_name: 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
+         # asset_content_type: ISO File
 
      # - name: Upload firmware for release
        # uses: softprops/action-gh-release@v1
@@ -46,3 +54,11 @@ jobs:
          # files: 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
          # name: ${{ env.date2 }} ${{matrix.target}} ${{ env.EMOJI }}
          # tag_name: ${{ env.date }}_${{matrix.target}}
+
+      - name: Upload firmware for artifact
+        uses: actions/upload-artifact@master
+        continue-on-error: true
+        if: env.UPLOAD_FIRMWARE_FOR_ARTIFACT == 'true'
+          with:
+          name: 19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
+          path: ./19041.1_PROFESSIONAL_ARM64_ZH-CN.ISO
